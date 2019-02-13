@@ -6,7 +6,7 @@ Ti.GoogleSignIn is an open-source project to support the Google SignIn Android-S
 The iOS version with API-parity is available at [@hansemannn/Ti.GoogleSignIn](https://github.com/hansemannn/titanium-google-signin).
 
 ## Requirements
-  * Titanium SDK 6.0.1.GA+
+  * Titanium SDK 7.0.0.GA+
 
 
 ## Permissions in manifest
@@ -22,7 +22,6 @@ Edit the `modules` tag of your `tiapp.xml` file & add these below two lines (add
 ```xml
 <modules>
     <module platform="android">ti.googlesignin</module>
-    <module platform="android">ti.playservices</module>
 </modules>
 ```
 
@@ -75,10 +74,11 @@ Google.addEventListener('login', function(e) {
        "givenName": "Person",
        "fullName": "Person Name",
        "accountName": "user@domain.com",
-       "token": "abc",
+       "idToken": "xN2VhaHZkbWhpN2JrMxN2VhaHZkbWhpN2JrMxN2VhaHZkbWhpN2JrMxN2VhaHZkbWhpN2JrMxN2VhaHZkbWhpN2JrMxN2VhaHZkbWhpN2JrMxN2VhaHZkbWhpN2JrM...",
+       "accessToken": "ya29.BucfHbDFMIGBucfHbDFMIGBucfHbDFMIGBucfHbDFMIGBucfHbDFMIG...",
        "email": "user@domain.com",
        "displayName": "User Name",
-       "photo": "https://lh5.googleusercontent.com/-F58Ul6-zinE/AAAAAAAAAAI/AAAAAAAAAAAA/123456789/abc-d/photo.jpg",
+       "photoUrl": "https://lh5.googleusercontent.com/-F58Ul6-zinE/AAAAAAAAAAI/AAAAAAAAAAAA/123456789/abc-d/photo.jpg",
        // to get large-sized photos, append this '?sz=500' in 'photo' value to get 500x500 picture like this:
        // "https://lh5.googleusercontent.com/-F58Ul6-zinE/AAAAAAAAAAI/AAAAAAAAAAAA/123456789/abc-d/photo.jpg?sz=350"
     }
