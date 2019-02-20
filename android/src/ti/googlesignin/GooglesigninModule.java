@@ -153,24 +153,26 @@ public class GooglesigninModule extends KrollModule implements ConnectionCallbac
 
 	@Kroll.method
 	protected synchronized void signIn() {
-		Log.d(LCAT, "signIn with " + googleApiClient.toString());
-		// Building of intent
-		final Intent signInIntent = Auth.GoogleSignInApi
-				.getSignInIntent(googleApiClient);
-		// building new activity with result handler
-		final TiActivitySupport activitySupport = (TiActivitySupport) TiApplication
-				.getInstance().getCurrentActivity();
-		if (TiApplication.isUIThread()) {
-			activitySupport.launchActivityForResult(signInIntent, RC_SIGN_IN,
-					new SignInResultHandler());
+		if(googleApiClient != null){
+			Log.d(LCAT, "signIn with " + googleApiClient.toString());
+			// Building of intent
+			final Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+			// building new activity with result handler
+			final TiActivitySupport activitySupport = (TiActivitySupport) TiApplication
+					.getInstance().getCurrentActivity();
+			if (TiApplication.isUIThread()) {
+				activitySupport.launchActivityForResult(signInIntent, RC_SIGN_IN,
+						new SignInResultHandler());
+			} else {
+				TiMessenger.postOnMain(new Runnable() {
+					@Override
+					public void run() {
+						activitySupport.launchActivityForResult(signInIntent, RC_SIGN_IN, new SignInResultHandler());
+					}
+				});
+			}
 		} else {
-			TiMessenger.postOnMain(new Runnable() {
-				@Override
-				public void run() {
-					activitySupport.launchActivityForResult(signInIntent,
-							RC_SIGN_IN, new SignInResultHandler());
-				}
-			});
+			Log.e(LCAT, "Google Sign In must be initialized first");
 		}
 	}
 
